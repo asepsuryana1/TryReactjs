@@ -20,6 +20,20 @@ router.post('/', (req, res, next) => {
   })
 })
 
+router.put('/:id', (req, res, next) => {
+  Todo.findByIdAndUpdate(
+    req.params.id,
+    {
+      task: req.body.task,
+      complete: req.body.complete
+    },
+    { new: true }
+    , (err, data) => {
+      if (err) return res.status(500).json({ err })
+      res.status(200).json(data)
+    })
+})
+
 
 
 
