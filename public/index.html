@@ -5,38 +5,39 @@
   <link rel="stylesheet" href="/stylesheets/style.css">
   <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 </head>
 
 <body>
   <div id="like_button_container"></div>
 </body>
-<script type='text/javascript'>
-'use strict';
+<script type='text/babel'>
+  'use strict';
 
-const e = React.createElement;
 
-class LikeButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { liked: false };
-  }
-
-  render() {
-    if (this.state.liked) {
-      return 'You liked this.';
+  class LikeButton extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = { liked: false };
     }
 
-    return e(
-      'button',
-      { onClick: () => this.setState({ liked: true }) },
-      'Like'
-    );
-  }
-}
+    render() {
+      if (this.state.liked) {
+        return 'You liked this.';
+      }
 
-const domContainer = document.querySelector('#like_button_container');
-ReactDOM.render(e(LikeButton), domContainer);
+      return (
+        <button onClick={() => this.setState({ liked: true })}>
+          Like
+        </button>
+      );
+    }
+  }
+
+  const domContainer = document.querySelector('#like_button_container');
+  ReactDOM.render(<LikeButton/>, domContainer);
 
 
 </script>
+
 </html>
