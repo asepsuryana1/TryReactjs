@@ -34,6 +34,16 @@ router.put('/:id', (req, res, next) => {
     })
 })
 
+router.delete('/:id', (req, res, next) => {
+  Todo.findByIdAndRemove(
+    req.params.id
+    , (err, data) => {
+      if (err) return res.status(500).json({ err })
+      res.status(200).json(data)
+    })
+})
+
+
 
 
 
